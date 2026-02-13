@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المكتبة الشيعية الرقمية | Shia Digital Library</title>
+    <!-- Google Fonts: Amiri for Arabic, Inter for layout -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-book-quran"></i>
+            <span>المكتبة الشيعية</span>
+        </div>
+        <div class="nav-icons">
+            <div class="icon" title="بحث"><i class="fas fa-search"></i></div>
+            <div class="icon" title="المفضلة"><i class="fas fa-star"></i></div>
+            <div class="icon" title="القائمة"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="color: var(--accent-color); font-size: 2.5rem; margin-bottom: 1rem;">كنوز المعرفة</h1>
+            <p style="color: #888; max-width: 600px; margin: 0 auto;">مكتبة رقمية حديثة تجمع أمهات الكتب ومصادر المعرفة
+                الإسلامية في واجهة عصرية أنيقة.</p>
+        </div>
+
+        <div class="book-grid" id="bookList">
+            <!-- Books will be injected here by JS if dynamic, or hardcoded below -->
+        </div>
+    </main>
+
+    <script>
+        async function loadBooks() {
+            const container = document.getElementById('bookList');
+            try {
+                const response = await fetch('books/list.json');
+                const books = await response.json();
+
+                container.innerHTML = '';
+                books.forEach(book => {
+                    const card = document.createElement('a');
+                    card.href = `reader.html?book=${book.id}`;
+                    card.className = 'book-card fade-in';
+
+                    // Check if there is a cover image, else use icon
+                    let coverHtml = `<i class="fas ${book.icon}" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem;"></i>`;
+                    if (book.cover) {
+                        // We assume cover is inside the book folder: books/ID/cover.jpg
+                        coverHtml = `<img src="books/${book.id}/${book.cover}" alt="${book.title}" class="book-cover-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                     <i class="fas ${book.icon}" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1.5rem; display:none;"></i>`;
+                    }
+
+                    card.innerHTML = `
+                        ${coverHtml}
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-meta">${book.author}</div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                container.innerHTML = `<p style="color:red; text-align:center;">خطأ في تحميل قائمة الكتب: ${err.message}</p>`;
+            }
+        }
+
+        loadBooks();
+    </script>
+</body>
+
+</html>

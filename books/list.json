@@ -1,0 +1,12 @@
+[
+    { "id": "1", "title": "القرآن الكريم", "author": "كلام الله", "icon": "fa-quran", "cover": "cover.jpg" },
+    { "id": "2", "title": "نهج البلاغة", "author": "الإمام علي (ع)", "icon": "fa-scroll", "cover": "cover.jpg" },
+    { "id": "3", "title": "الكافي", "author": "الشيخ الكليني", "icon": "fa-book-open", "cover": "cover.jpg" },
+    { "id": "4", "title": "مفاتيح الجنان", "author": "الشيخ عباس القمي", "icon": "fa-key", "cover": "cover.jpg" },
+    { "id": "5", "title": "الصحيفة السجادية", "author": "الإمام السجاد (ع)", "icon": "fa-praying-hands", "cover": "cover.jpg" },
+    { "id": "6", "title": "من لا يحضره الفقيه", "author": "الشيخ الصدوق", "icon": "fa-balance-scale", "cover": "cover.jpg" },
+    { "id": "7", "title": "تهذيب الأحكام", "author": "الشيخ الطوسي", "icon": "fa-gavel", "cover": "cover.jpg" },
+    { "id": "8", "title": "الاستبصار", "author": "الشيخ الطوسي", "icon": "fa-eye", "cover": "cover.jpg" },
+    { "id": "9", "title": "بحار الأنوار", "author": "العلامة المجلسي", "icon": "fa-water", "cover": "cover.jpg" },
+    { "id": "10", "title": "وسائل الشيعة", "author": "الشيخ الحر العاملي", "icon": "fa-list-ol", "cover": "cover.jpg" }
+]
